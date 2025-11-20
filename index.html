@@ -3,234 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rajmohan Lakshmanan | Enterprise Architect & Technology Leader</title>
+    <title>Rajmohan Lakshmanan | Enterprise AI Solution Architect</title>
     <style>
+        :root {
+            --primary-color: #3498db; /* Blue accent */
+            --background-color: #f8f9fa; /* Light gray background */
+            --text-color: #333;
+            --heading-color: #2c3e50;
+            --section-bg: #fff;
+            --border-color: #eee;
+        }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: var(--background-color);
+            color: var(--text-color);
             line-height: 1.6;
         }
         .container {
             width: 90%;
             max-width: 900px;
-            margin: 30px auto;
-            background: #fff;
-            padding: 20px 40px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin: 0 auto;
+            padding: 20px 0;
         }
-        h1 {
-            color: #2c3e50;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 10px;
-            margin-top: 0;
-            font-size: 2.2em;
+        header {
+            background-color: var(--heading-color);
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        header p {
+            font-size: 1.2em;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+        section {
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border-color);
         }
         h2 {
-            color: #3498db;
-            margin-top: 25px;
-            font-size: 1.6em;
+            color: var(--primary-color);
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
             padding-bottom: 5px;
-            border-bottom: 1px dashed #eee;
         }
         h3 {
-            color: #555;
-            margin-top: 15px;
-            font-size: 1.2em;
+            color: var(--heading-color);
+            margin-top: 25px;
+            font-size: 1.3em;
         }
-        .section-content {
-            margin-left: 20px;
-        }
+        /* Style for the Expertise/Skills bullet points */
         ul {
             list-style: none;
             padding-left: 0;
         }
-        li {
+        ul li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+        ul li:before {
+            content: '•';
+            color: var(--primary-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        /* Experience Table Styling */
+        .experience-item {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            background: var(--section-bg);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 10px;
         }
-        .experience table, .skills table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-        .experience th, .experience td, .skills th, .skills td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        .experience th {
-            background-color: #ecf0f1;
-            color: #2c3e50;
-        }
-        .role {
+        .role-title {
+            font-size: 1.2em;
             font-weight: bold;
-            color: #3498db;
+            color: var(--primary-color);
         }
-        .company {
+        .dates {
             font-style: italic;
+            color: #777;
         }
-        .contact p {
-            margin: 5px 0;
+        .company-name {
+            font-style: normal;
+            font-weight: 500;
+            color: var(--heading-color);
+            margin-bottom: 10px;
+            display: block;
         }
-        .expertise-list {
-            display: flex;
-            flex-wrap: wrap;
+        .summary-text {
+            color: #555;
+            font-size: 0.95em;
+        }
+        /* Contact/Certifications */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
+            margin-top: 20px;
         }
-        .expertise-item {
-            flex: 1 1 45%; /* Allows two items per row */
-            min-width: 300px;
+        .contact-item {
             padding: 15px;
             background: #ecf0f1;
-            border-left: 4px solid #3498db;
+            border-radius: 3px;
+            text-align: center;
         }
-        .expertise-item h4 {
-            color: #2c3e50;
-            margin-top: 0;
+        .contact-item strong {
+            display: block;
+            color: var(--heading-color);
+            margin-bottom: 5px;
+        }
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: var(--heading-color);
+            color: #fff;
+            font-size: 0.9em;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
+    <header>
+        <div class="container">
+            <h1>Rajmohan Lakshmanan</h1>
+            <p>Enterprise Architect & Technology Leader | Gen-AI & Cloud Transformation Expert</p>
+        </div>
+    </header>
+
     <div class="container">
-
-        <header>
-            <h1>Rajmohan Lakshmanan <span style="font-size: 0.6em; color: #555;">| Enterprise Architect & Technology Leader</span></h1>
-        </header>
-
-        <section class="summary">
+        <section id="summary">
             <h2>Summary Professional</h2>
-            <p class="section-content">
-                I am an accomplished and strategic Enterprise Architect with over **20 years of experience** [cite: 33] in the banking and finance industry[cite: 33]. I have a proven track record of driving business transformation and enhancing productivity by aligning technology with core business objectives[cite: 34]. As a certified **TOGAF** and **AWS** professional [cite: 35, 29, 28], I excel at leading teams and managing multi-million dollar budgets to deliver innovative solutions[cite: 35]. My expertise spans cloud computing, microservices architecture, and emerging **Generative AI** strategies[cite: 36].
+            <p>
+                [cite_start]I am an accomplished and strategic Enterprise Architect with over **20 years of experience** in the banking and finance industry[cite: 33]. [cite_start]I have a proven track record of driving business transformation and enhancing productivity by aligning technology with core business objectives[cite: 34]. [cite_start]As a certified **TOGAF** and **AWS** professional [cite: 35][cite_start], I excel at leading teams and managing multi-million dollar budgets to deliver innovative solutions[cite: 35]. [cite_start]My expertise spans cloud computing, microservices architecture, and emerging **Generative AI** strategies[cite: 36].
             </p>
         </section>
 
-        <section class="expertise">
+        <section id="expertise">
             <h2>Key Areas of Expertise</h2>
-            <div class="expertise-list">
-                
-                <div class="expertise-item">
-                    <h4>💡 Strategic Architecture & Design Leadership</h4>
-                    <ul>
-                        <li>**Core Application Strategy:** I specialize in defining and shaping application strategies for complex enterprise environments, leveraging modern frameworks and technologies like Java, Spring Boot, J2EE, and Python[cite: 5, 6].</li>
-                        <li>**Gen-AI Innovation:** I architect and lead the design of advanced Generative AI platforms, integrating them strategically to create new business value[cite: 7]. My expertise includes defining AI pipelines, selecting appropriate LLMs, and implementing scalable solutions like Retrieval-Augmented Generation (RAG)[cite: 8].</li>
-                        <li>**Cloud & Platform Modernization:** I lead the design and implementation of cloud-native and microservices architectures using AWS, Pivotal Cloud Foundry (PCF), Docker, and Kubernetes[cite: 9].</li>
-                    </ul>
-                </div>
 
-                <div class="expertise-item">
-                    <h4>⚙️ Technical Execution & Governance</h4>
-                    <ul>
-                        <li>**Technical Governance & Road Mapping:** I provide technical leadership to ensure solutions are built according to enterprise standards and create technological roadmaps to guide teams[cite: 13, 14].</li>
-                        <li>**CI/CD & DevOps Strategy:** I define and implement DevSecOps and CI/CD strategies to automate workflows and improve operational efficiency[cite: 15].</li>
-                        <li>**Enterprise Integration:** I design robust data and integration strategies, overseeing API ecosystems and high-performance databases[cite: 17, 18].</li>
-                    </ul>
-                </div>
+            <h3>Strategic Architecture & Design Leadership</h3>
+            <ul>
+                [cite_start]<li>**Gen-AI Innovation:** I architect and lead the design of advanced Generative AI platforms, integrating them strategically to create new business value[cite: 7]. [cite_start]My expertise includes defining AI pipelines, selecting appropriate LLMs, and implementing scalable solutions like Retrieval-Augmented Generation (RAG)[cite: 8].</li>
+                [cite_start]<li>**Cloud & Platform Modernization:** I lead the design and implementation of cloud-native and microservices architectures using AWS, Pivotal Cloud Foundry (PCF), Docker, and Kubernetes[cite: 9].</li>
+                [cite_start]<li>**Core Application Strategy:** I specialize in defining and shaping application strategies for complex enterprise environments, leveraging modern frameworks and technologies like Java, Spring Boot, J2EE, and Python[cite: 5].</li>
+            </ul>
 
-                <div class="expertise-item">
-                    <h4>🏦 Industry & Domain Acumen</h4>
-                    <ul>
-                        <li>**Financial Services:** I have deep domain knowledge in **Payments, Wholesale Banking, and Wealth Management**[cite: 21].</li>
-                        <li>**Leadership:** My experience includes building and mentoring high-performing engineering teams[cite: 22].</li>
-                    </ul>
+            <h3>Technical Execution & Governance</h3>
+            <ul>
+                [cite_start]<li>**CI/CD & DevOps Strategy:** I define and implement DevSecOps and CI/CD strategies to automate workflows and improve operational efficiency[cite: 15].</li>
+                [cite_start]<li>**Enterprise Integration:** I design robust data and integration strategies, overseeing comprehensive API ecosystems and high-performance databases[cite: 17].</li>
+            </ul>
+            
+            <h3>Industry & Domain Acumen</h3>
+            <ul>
+                [cite_start]<li>**Financial Services:** Deep domain knowledge in Payments, Wholesale Banking, and Wealth Management[cite: 21].</li>
+            </ul>
+        </section>
+
+        <section id="experience">
+            <h2>Experience</h2>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <span class="role-title">SENIOR SOLUTION CONSULTANT</span>
+                    [cite_start]<span class="dates">Sep 2021 – Present [cite: 41]</span>
+                </div>
+                [cite_start]<span class="company-name">IBM CONSULTING [cite: 40]</span>
+                <p class="summary-text">
+                    [cite_start]Served as Enterprise Architect/Solution Consultant, leading and collaborating with cross-functional teams to develop and present innovative technical solutions for proposals and RFPs[cite: 43]. [cite_start]I specialize in designing solutions that leverage cutting-edge technologies like **Generative AI** and **Agentic AI**[cite: 49].
+                </p>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <span class="role-title">LEAD SOLUTION ARCHITECT (DIGITAL)</span>
+                    [cite_start]<span class="dates">Jul 2020 – Aug 2021 [cite: 53]</span>
+                </div>
+                [cite_start]<span class="company-name">DBS (CONTRACT VIA COMTEL) [cite: 51]</span>
+                <p class="summary-text">
+                    [cite_start]Led digital transformation from Legacy to Next Generation architecture (Domain driven microservice in AWS and PCF)[cite: 54]. [cite_start]Drove core banking migration projects, moving from old stack like Axway API gateway to next gen API gateway (AWS and Kong)[cite: 57].
+                </p>
+            </div>
+            
+             <div class="experience-item">
+                <div class="experience-header">
+                    <span class="role-title">SOLUTION ARCHITECT</span>
+                    [cite_start]<span class="dates">Jul 2019 – May 2020 [cite: 59]</span>
+                </div>
+                [cite_start]<span class="company-name">FINANTIX, SINGAPORE [cite: 58]</span>
+                <p class="summary-text">
+                    [cite_start]Analyzed and gathered business requirements from large and complex client environments[cite: 62]. [cite_start]Executed solutions' presentations, demos, and designed and extended Finantix Product capabilities into AWS as SaaS[cite: 92].
+                </p>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <span class="role-title">SOLUTION ARCHITECT</span>
+                    [cite_start]<span class="dates">Mar 2018 – Jun 2019 [cite: 93]</span>
+                </div>
+                [cite_start]<span class="company-name">BNP PARIBAS, SINGAPORE [cite: 93]</span>
+                <p class="summary-text">
+                    [cite_start]Architecting application eBanking (Digital) & IT Transformation for BNP Paribas Wealth management client[cite: 94]. [cite_start]Developed Digital transformation solutions including scope, cost, schedule, and the implementation of Agile based execution[cite: 95].
+                </p>
+            </div>
+            
+        </section>
+
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            
+            <h3>Cloud & DevOps</h3>
+            <ul>
+                [cite_start]<li>**Platforms:** AWS, PCF, Dockers, Kubernetes, Red Hat OpenShift[cite: 71, 72].</li>
+                [cite_start]<li>**Automation:** Jenkins, SonarQube, BladeLogic, RPA[cite: 76].</li>
+            </ul>
+
+            <h3>AI & Development</h3>
+            <ul>
+                [cite_start]<li>**Gen-AI:** Prompt engineering, Gen-Al use case building, Gen-Al design and LLM selection[cite: 77, 78, 79].</li>
+                [cite_start]<li>**Languages/Frameworks:** Java, Spring Boot, J2EE, Python[cite: 69, 70].</li>
+            </ul>
+
+            <h3>Data & Integration</h3>
+            <ul>
+                [cite_start]<li>**Middleware:** MuleSoft, IBM MQ, RabbitMQ, SOAP, RESTAPI, KAFKA[cite: 73, 81, 82].</li>
+                [cite_start]<li>**Databases:** Oracle, PostgreSQL, MongoDB, Elasticsearch, Aerospike, MariaDB[cite: 84, 85, 86].</li>
+            </ul>
+        </section>
+        
+        <section id="contact">
+            <h2>Contact & Certification</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <p>📧</p>
+                    <strong>Email</strong>
+                    <p><a href="mailto:Rajmohanmsc@gmail.com" style="color:var(--primary-color);">Rajmohanmsc@gmail.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <p>📞</p>
+                    <strong>Phone</strong>
+                    [cite_start]<p>+65 91470353 [cite: 25]</p>
+                </div>
+                <div class="contact-item">
+                    <p>📍</p>
+                    <strong>Location</strong>
+                    [cite_start]<p>Singapore PR [cite: 26]</p>
+                </div>
+                <div class="contact-item">
+                    <p>🎓</p>
+                    <strong>Education</strong>
+                    [cite_start]<p>Master of Science in Computer Technology (2003) [cite: 63, 65]</p>
                 </div>
             </div>
         </section>
-
-        <section class="experience">
-            <h2>Experience</h2>
-            <table>
-                <tr>
-                    <th>Role</th>
-                    <th>Company</th>
-                    <th>Dates</th>
-                    <th>Summary / Key Achievements</th>
-                </tr>
-                <tr>
-                    <td class="role">SENIOR SOLUTION CONSULTANT</td>
-                    <td class="company">IBM CONSULTING</td>
-                    <td>Sep 2021 – Present [cite: 41]</td>
-                    <td>
-                        Act as Enterprise Architect/Solution Consultant, leading pre-sales solutioning [cite: 46] and engaging with C-level clients[cite: 44]. I specialize in designing solutions that leverage cutting-edge technologies like **Generative AI** and **Agentic AI**[cite: 49]. I lead technology transformations for clients from concept to production[cite: 50].
-                    </td>
-                </tr>
-                <tr>
-                    <td class="role">LEAD SOLUTION ARCHITECT (DIGITAL)</td>
-                    <td class="company">DBS (CONTRACT VIA COMTEL)</td>
-                    <td>Jul 2020 – Aug 2021 [cite: 53]</td>
-                    <td>
-                        Led digital transformation from Legacy to Next Generation architecture (Domain driven microservices in AWS and PCF)[cite: 54]. Governed and solutioned the Experience API used by the DBS mobile app[cite: 55]. Drove core banking migration projects to next gen API gateway (AWS and Kong)[cite: 57].
-                    </td>
-                </tr>
-                <tr>
-                    <td class="role">SOLUTION ARCHITECT</td>
-                    <td class="company">FINANTIX, SINGAPORE</td>
-                    <td>Jul 2019 – May 2020 [cite: 59]</td>
-                    <td>
-                        Analyzed and gathered business requirements from large and complex client environments[cite: 62, 89]. Designed and extended Finantix Product capabilities into **AWS as SaaS**[cite: 92].
-                    </td>
-                </tr>
-                <tr>
-                    <td class="role">SOLUTION ARCHITECT</td>
-                    <td class="company">BNP PARIBAS, SINGAPORE</td>
-                    <td>Mar 2018 – Jun 2019 [cite: 93]</td>
-                    <td>
-                        Architected application eBanking (Digital) and IT Transformation for Wealth management client[cite: 94]. Developed Digital transformation solutions including scope, cost, schedule, and implementation of Agile based execution[cite: 95].
-                    </td>
-                </tr>
-            </table>
-        </section>
-
-        <section class="skills">
-            <h2>Skills & Technologies</h2>
-            <table>
-                <tr>
-                    <th>Category</th>
-                    <th>Skills</th>
-                </tr>
-                <tr>
-                    <td>**Enterprise & Application Architecture**</td>
-                    <td>Monolithic/Microservices [cite: 68], Java, Spring Boot, STRUTS, J2EE, SPRING, Hibernate, COBOL, Python [cite: 69, 70]</td>
-                </tr>
-                <tr>
-                    <td>**Cloud Platforms & Containers**</td>
-                    <td>AWS, PCF, Docker, Kubernetes, Red Hat OpenShift [cite: 71, 72]</td>
-                </tr>
-                <tr>
-                    <td>**Generative AI**</td>
-                    <td>Prompt engineering, Gen-AI use case building, Gen-AI design, LLM selection [cite: 77, 78, 79]</td>
-                </tr>
-                <tr>
-                    <td>**Middleware & Integration**</td>
-                    <td>MuleSoft, IBM Infosphere [cite: 73], IBM MQ, RabbitMQ, SOAP, RESTAPI, KAFKA [cite: 81, 82]</td>
-                </tr>
-                <tr>
-                    <td>**Database Management**</td>
-                    <td>Oracle, PostgreSQL, MongoDB, Elasticsearch, Aerospike, MariaDB [cite: 84, 85, 86]</td>
-                </tr>
-            </table>
-        </section>
-
-        <section class="education">
-            <h2>Education</h2>
-            <p class="section-content">
-                **Master of Science in Computer Technology** [cite: 63, 64]
-                <br>Bharathiyar University, Tamil Nadu, India (2003) [cite: 65, 66]
-            </p>
-        </section>
-
-        <section class="contact">
-            <h2>Contact</h2>
-            <p><strong>Email:</strong> Rajmohanmsc@gmail.com [cite: 24]</p>
-            <p><strong>Phone:</strong> +65 91470353 [cite: 25]</p>
-            <p><strong>Location:</strong> Singapore PR [cite: 26]</p>
-        </section>
-
-        <footer style="text-align: center; margin-top: 30px; padding: 10px; font-size: 0.8em; color: #777;">
-            <p>Proudly an IBM Generative AI Architect & AWS/TOGAF Certified Professional[cite: 30, 29, 28].</p>
-        </footer>
-
     </div>
+
+    <footer>
+        <div class="container">
+            [cite_start]<p>Certified Professional: IBM Generative AI Architect [cite: 30][cite_start], AWS Certified [cite: 29][cite_start], TOGAF Certified [cite: 28]</p>
+        </div>
+    </footer>
 </body>
 </html>
