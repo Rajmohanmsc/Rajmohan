@@ -1,24 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Tab Switching for Experience Section
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const jobPanels = document.querySelectorAll('.job-panel');
+    // Dynamic Year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active class from all buttons and panels
-            tabBtns.forEach(b => b.classList.remove('active'));
-            jobPanels.forEach(p => p.classList.remove('active'));
-
-            // Add active class to clicked button
-            btn.classList.add('active');
-
-            // Show corresponding panel
-            const jobId = btn.getAttribute('data-id');
-            document.getElementById(jobId).classList.add('active');
-        });
-    });
-
-    // Smooth scrolling for anchor links
+    // Smooth Scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -28,19 +12,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Navbar hide/show on scroll
-    let lastScrollTop = 0;
-    const header = document.querySelector('.header');
+    // Mobile Menu Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
 
-    window.addEventListener('scroll', () => {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        if (scrollTop > lastScrollTop) {
-            // Scroll Down
-            header.style.transform = 'translateY(-100%)';
-        } else {
-            // Scroll Up
-            header.style.transform = 'translateY(0)';
+    hamburger.addEventListener('click', () => {
+        navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        if (navLinks.style.display === 'flex') {
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '80px';
+            navLinks.style.left = '0';
+            navLinks.style.width = '100%';
+            navLinks.style.backgroundColor = 'rgba(15, 23, 42, 0.95)';
+            navLinks.style.padding = '20px';
         }
-        lastScrollTop = scrollTop;
     });
 });
