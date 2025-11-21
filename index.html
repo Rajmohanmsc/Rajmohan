@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Certifications Section Styling */
         .certifications {
             background-color: #f8fafc;
             padding: 60px 0;
@@ -50,7 +49,6 @@
             width: auto;
             object-fit: contain;
             margin-bottom: 15px;
-            /* Optional: Grayscale until hover */
             filter: grayscale(100%);
             transition: filter 0.3s;
         }
@@ -69,11 +67,12 @@
 <body>
     <header class="header">
         <nav class="navbar">
-            <a href="#hero" class="logo">Rajmohan L.</a>
+            <a href="#hero" class="logo">Rajmohan.</a>
             <ul class="nav-links">
                 <li><a href="#philosophy">Philosophy</a></li>
                 <li><a href="#expertise">Expertise</a></li>
-                <li><a href="#certifications">Certifications</a></li> <li><a href="#solutions">Solutions</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#solutions">Solutions</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#contact" class="btn-contact">Let's Collaborate</a></li>
             </ul>
@@ -210,8 +209,7 @@
                     <div class="tech-category">
                         <h3>Languages & Frameworks</h3>
                         <div class="tags">
-                            <span>Java</span><span>Spring
-                                Boot</span><span>Python</span><span>J2EE</span><span>Hibernate</span>
+                            <span>Java</span><span>Spring Boot</span><span>Python</span><span>J2EE</span><span>Hibernate</span>
                         </div>
                     </div>
                     <div class="tech-category">
@@ -243,22 +241,21 @@
                 </div>
                 <div class="cert-grid">
                     <div class="cert-card">
-                        <img src="togaf.png" alt="TOGAF Certified" class="cert-logo">
+                        <img src="togaf.png" alt="TOGAF Certified" class="cert-logo" onerror="this.src='https://via.placeholder.com/150x80?text=TOGAF';">
                         <div class="cert-name">TOGAF Certified Architect</div>
                     </div>
-
                     <div class="cert-card">
-                        <img src="aws.png" alt="AWS Certified Solutions Architect" class="cert-logo">
-                        <div class="cert-name">AWS Certified Solutions Architect – Associate</div>
+                        <img src="aws.png" alt="AWS Certified" class="cert-logo" onerror="this.src='https://via.placeholder.com/150x80?text=AWS+Certified';">
+                        <div class="cert-name">AWS Certified Solutions Architect</div>
                     </div>
-
                     <div class="cert-card">
-                        <img src="ibm.png" alt="IBM Certified Architect" class="cert-logo">
+                        <img src="ibm.png" alt="IBM Certified" class="cert-logo" onerror="this.src='https://via.placeholder.com/150x80?text=IBM+Gen-AI';">
                         <div class="cert-name">IBM Certified Architect<br>Generative AI</div>
                     </div>
                 </div>
             </div>
         </section>
+
         <section id="solutions" class="section solutions">
             <div class="container">
                 <div class="section-header">
@@ -365,187 +362,193 @@
 
     <script src="script.js"></script>
 
-   <div id="rm-widget-container">
-    <div id="rm-chat-window" style="display: none;">
-        <div class="rm-header">
-            <div class="rm-profile">
-                <div class="rm-avatar">
-                    <i class="fa-solid fa-robot"></i>
+    <div id="rm-widget-container">
+        <div id="rm-chat-window" style="display: none;">
+            <div class="rm-header">
+                <div class="rm-profile">
+                    <div class="rm-avatar"><i class="fa-solid fa-robot"></i></div>
+                    <div class="rm-info">
+                        <span class="rm-name">Rajmohan's AI</span>
+                        <span class="rm-role">Connected to AWS Bedrock</span>
+                    </div>
                 </div>
-                <div class="rm-info">
-                    <span class="rm-name">Rajmohan's AI</span>
-                    <span class="rm-role">Enterprise Architect Bot</span>
+                <button onclick="toggleRmChat()" class="rm-close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="rm-body" id="rm-chat-body">
+                <div class="rm-date">Today</div>
+                <div class="rm-msg rm-msg-bot">
+                    Hello! 👋 <br>
+                    I am your portfolio assistant powered by <b>AWS Bedrock</b>. Ask me about Rajmohan's experience, certifications, or microservices skills.
                 </div>
             </div>
-            <button onclick="toggleRmChat()" class="rm-close">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </div>
-        
-        <div class="rm-body" id="rm-chat-body">
-            <div class="rm-date">Today</div>
-            <div class="rm-msg rm-msg-bot">
-                Hello! 👋 <br>
-                I am connected to <b>AWS Bedrock</b>. Ask me about Rajmohan's Microservices experience or Certifications.
+
+            <div class="rm-footer">
+                <input type="text" id="rm-input" placeholder="Type a question..." onkeypress="handleRmEnter(event)">
+                <button onclick="processRmMessage()" id="rm-send-btn"><i class="fa-solid fa-paper-plane"></i></button>
             </div>
         </div>
 
-        <div class="rm-footer">
-            <input type="text" id="rm-input" placeholder="Ask a question..." onkeypress="handleRmEnter(event)">
-            <button onclick="processRmMessage()" id="rm-send-btn">
-                <i class="fa-solid fa-paper-plane"></i>
-            </button>
-        </div>
+        <button id="rm-launcher" onclick="toggleRmChat()">
+            <i class="fa-solid fa-comment-dots"></i>
+            <span class="rm-badge">1</span>
+        </button>
     </div>
 
-    <button id="rm-launcher" onclick="toggleRmChat()">
-        <i class="fa-solid fa-comment-dots"></i>
-        <span class="rm-badge">1</span>
-    </button>
-</div>
-
-<style>
-    /* WIDGET STYLES */
-    #rm-widget-container {
-        font-family: 'Inter', sans-serif;
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 99999;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
-    #rm-launcher {
-        width: 60px; height: 60px;
-        border-radius: 50%;
-        background: #0f172a; color: white;
-        border: none; font-size: 24px; cursor: pointer;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        transition: transform 0.3s;
-    }
-    #rm-launcher:hover { transform: scale(1.1); }
-    
-    #rm-chat-window {
-        width: 350px;
-        max-height: 80vh; height: 500px;
-        background: white;
-        border-radius: 20px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-        margin-bottom: 15px;
-        flex-direction: column;
-        overflow: hidden;
-        border: 1px solid #e2e8f0;
-    }
-    
-    .rm-header {
-        background: #0f172a; padding: 15px;
-        display: flex; justify-content: space-between; align-items: center; color: white;
-    }
-    .rm-profile { display: flex; align-items: center; gap: 10px; }
-    .rm-avatar { width: 35px; height: 35px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-    .rm-info { display: flex; flex-direction: column; }
-    .rm-name { font-weight: bold; font-size: 14px; }
-    .rm-role { font-size: 11px; opacity: 0.8; }
-    .rm-close { background: none; border: none; color: white; cursor: pointer; font-size: 18px; }
-
-    .rm-body { flex: 1; padding: 15px; background: #f8fafc; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
-    .rm-msg { max-width: 85%; padding: 10px 14px; font-size: 14px; line-height: 1.5; border-radius: 12px; word-wrap: break-word; }
-    .rm-msg-bot { background: white; color: #333; border-bottom-left-radius: 2px; border: 1px solid #e2e8f0; }
-    .rm-msg-user { background: #2563eb; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
-    
-    .rm-footer { padding: 10px; background: white; border-top: 1px solid #f1f5f9; display: flex; gap: 10px; }
-    #rm-input { flex: 1; padding: 10px; border: 1px solid #e2e8f0; border-radius: 20px; outline: none; }
-    #rm-send-btn { background: #2563eb; color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; }
-    .rm-typing { font-size: 12px; color: #64748b; font-style: italic; margin-left: 10px; display: none; }
-    .rm-badge { position: absolute; top: -5px; right: -5px; background: red; color: white; font-size: 10px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-</style>
-
-<script>
-    // --- CONFIGURATION ---
-    // ⬇️ REPLACE WITH YOUR COPIED API URL ⬇️
-	const API_URL = "https://h46qo9irm0.execute-api.us-east-1.amazonaws.com/chat";
-    const PHONE = "6591470353";
-
-    // --- TOGGLE CHAT ---
-    function toggleRmChat() {
-        console.log("Toggling chat..."); // Debug check
-        const win = document.getElementById("rm-chat-window");
-        const badge = document.querySelector(".rm-badge");
+    <style>
+        /* --- CHATBOT CSS --- */
+        #rm-widget-container {
+            position: fixed; bottom: 20px; right: 20px; z-index: 99999;
+            display: flex; flex-direction: column; align-items: flex-end;
+            font-family: 'Inter', sans-serif;
+        }
+        #rm-launcher {
+            width: 60px; height: 60px; border-radius: 50%;
+            background: #0f172a; color: white; border: none;
+            font-size: 24px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.2s; position: relative;
+        }
+        #rm-launcher:hover { transform: scale(1.1); }
+        .rm-badge {
+            position: absolute; top: -2px; right: -2px;
+            background: #ef4444; color: white; font-size: 11px;
+            width: 20px; height: 20px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            border: 2px solid white; font-weight: bold;
+        }
+        #rm-chat-window {
+            width: 350px; max-height: 80vh; height: 500px;
+            background: white; border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            margin-bottom: 15px; display: flex; flex-direction: column;
+            overflow: hidden; border: 1px solid #e2e8f0;
+        }
+        .rm-header {
+            background: #0f172a; padding: 15px; color: white;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .rm-profile { display: flex; align-items: center; gap: 10px; }
+        .rm-avatar { 
+            width: 35px; height: 35px; background: rgba(255,255,255,0.2); 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+        }
+        .rm-info { display: flex; flex-direction: column; }
+        .rm-name { font-weight: 700; font-size: 14px; }
+        .rm-role { font-size: 11px; opacity: 0.8; }
+        .rm-close { background: none; border: none; color: white; font-size: 18px; cursor: pointer; }
         
-        if (!win) {
-            console.error("Chat window element not found!");
-            return;
+        .rm-body { 
+            flex: 1; padding: 15px; background: #f8fafc; overflow-y: auto; 
+            display: flex; flex-direction: column; gap: 12px; 
+        }
+        .rm-date { text-align: center; font-size: 11px; color: #94a3b8; margin-bottom: 5px; }
+        .rm-msg { 
+            max-width: 85%; padding: 10px 14px; border-radius: 12px; 
+            font-size: 14px; line-height: 1.5; word-wrap: break-word; 
+        }
+        .rm-msg-bot { 
+            background: white; color: #334155; 
+            border-bottom-left-radius: 2px; border: 1px solid #e2e8f0; 
+        }
+        .rm-msg-user { 
+            background: #2563eb; color: white; 
+            align-self: flex-end; border-bottom-right-radius: 2px; 
+        }
+        .rm-typing { 
+            font-size: 12px; color: #64748b; font-style: italic; 
+            margin-left: 10px; display: none; 
         }
 
-        if (win.style.display === 'none' || win.style.display === '') {
-            win.style.display = 'flex';
-            if (badge) badge.style.display = 'none';
-            setTimeout(() => document.getElementById("rm-input").focus(), 100);
-        } else {
-            win.style.display = 'none';
+        .rm-footer { 
+            padding: 10px; background: white; border-top: 1px solid #f1f5f9; 
+            display: flex; gap: 10px; 
         }
-    }
-
-    // --- HANDLE ENTER KEY ---
-    function handleRmEnter(e) {
-        if (e.key === 'Enter') processRmMessage();
-    }
-
-    // --- SEND MESSAGE ---
-    async function processRmMessage() {
-        const input = document.getElementById("rm-input");
-        const text = input.value.trim();
-        if (!text) return;
-
-        // 1. Show User Message
-        addRmMsg(text, 'rm-msg-user');
-        input.value = '';
-
-        // 2. Show Typing
-        const body = document.getElementById("rm-chat-body");
-        const typing = document.createElement("div");
-        typing.className = "rm-typing";
-        typing.innerText = "AI is thinking...";
-        typing.style.display = "block";
-        body.appendChild(typing);
-        body.scrollTop = body.scrollHeight;
-
-        try {
-            console.log("Sending to AWS...");
-            // 3. Call AWS
-            const response = await fetch(API_URL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ message: text })
-            });
-
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-
-            const data = await response.json();
-            
-            // 4. Remove Typing & Show Answer
-            body.removeChild(typing);
-            addRmMsg(data.reply, 'rm-msg-bot');
-
-        } catch (error) {
-            console.error("AWS Error:", error);
-            body.removeChild(typing);
-            // Fallback link
-            const waUrl = `https://wa.me/${PHONE}?text=Hi%20Rajmohan,%20I%20asked:%20${encodeURIComponent(text)}`;
-            addRmMsg(`⚠️ Cloud connection failed. <br><a href="${waUrl}" target="_blank" style="color:#2563eb; font-weight:bold;">Ask on WhatsApp</a>`, 'rm-msg-bot');
+        #rm-input { 
+            flex: 1; padding: 10px; border: 1px solid #e2e8f0; 
+            border-radius: 20px; outline: none; font-size: 14px;
         }
-    }
+        #rm-send-btn { 
+            background: #2563eb; color: white; border: none; 
+            width: 40px; height: 40px; border-radius: 50%; 
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+        }
+        #rm-send-btn:hover { background: #1d4ed8; }
+        .rm-wa-link {
+            display: inline-block; margin-top: 5px; color: #2563eb; 
+            font-weight: bold; text-decoration: none;
+        }
+        
+        @media (max-width: 480px) {
+            #rm-chat-window { width: 300px; right: 10px; bottom: 80px; }
+        }
+    </style>
 
-    function addRmMsg(html, type) {
-        const body = document.getElementById("rm-chat-body");
-        const div = document.createElement("div");
-        div.className = `rm-msg ${type}`;
-        div.innerHTML = html;
-        body.appendChild(div);
-        body.scrollTop = body.scrollHeight;
-    }
-</script>
-    </body>
+    <script>
+        // --- CONFIGURATION ---
+        const API_URL = "https://h46qo9irm0.execute-api.us-east-1.amazonaws.com/chat";
+        const PHONE = "6591470353";
 
+        function toggleRmChat() {
+            const win = document.getElementById("rm-chat-window");
+            const badge = document.querySelector(".rm-badge");
+            if (win.style.display === 'none') {
+                win.style.display = 'flex';
+                if(badge) badge.style.display = 'none';
+                setTimeout(() => document.getElementById("rm-input").focus(), 100);
+            } else {
+                win.style.display = 'none';
+            }
+        }
+
+        function handleRmEnter(e) {
+            if (e.key === 'Enter') processRmMessage();
+        }
+
+        async function processRmMessage() {
+            const input = document.getElementById("rm-input");
+            const text = input.value.trim();
+            if (!text) return;
+
+            addRmMsg(text, 'rm-msg-user');
+            input.value = '';
+
+            const body = document.getElementById("rm-chat-body");
+            const typing = document.createElement("div");
+            typing.className = "rm-typing";
+            typing.innerText = "AI is thinking...";
+            typing.style.display = "block";
+            body.appendChild(typing);
+            body.scrollTop = body.scrollHeight;
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message: text })
+                });
+
+                if (!response.ok) throw new Error("Network response was not ok");
+
+                const data = await response.json();
+                body.removeChild(typing);
+                addRmMsg(data.reply, 'rm-msg-bot');
+
+            } catch (error) {
+                console.error("AWS Error:", error);
+                body.removeChild(typing);
+                const waUrl = `https://wa.me/${PHONE}?text=Hi%20Rajmohan,%20I%20asked:%20${encodeURIComponent(text)}`;
+                addRmMsg(`⚠️ Cloud connection failed. <br><a href="${waUrl}" target="_blank" class="rm-wa-link">Chat on WhatsApp</a>`, 'rm-msg-bot');
+            }
+        }
+
+        function addRmMsg(html, type) {
+            const body = document.getElementById("rm-chat-body");
+            const div = document.createElement("div");
+            div.className = `rm-msg ${type}`;
+            div.innerHTML = html;
+            body.appendChild(div);
+            body.scrollTop = body.scrollHeight;
+        }
+    </script>
+</body>
 </html>
