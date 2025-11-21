@@ -602,6 +602,87 @@
 
     <script>
         // --- RAJMOHAN'S CONFIG ---
+		
+		// --- AWS CONFIGURATION ---
+    // PASTE YOUR FULL URL HERE (ending in /chat)
+    const API_URL = "https://h46qo9irm0.execute-api.us-east-1.amazonaws.com/chat"; 
+
+    // --- RAJMOHAN'S CONFIG ---
+    const rmConfig = {
+        phone: "6591470353",
+        name: "Rajmohan"
+    };
+
+    // --- FUNCTIONS ---
+    function toggleRmChat() {
+        const win = document.getElementById("rm-chat-window");
+        const badge = document.querySelector(".rm-badge");
+        if (win.style.display === 'flex') {
+            win.style.display = 'none';
+        } else {
+            win.style.display = 'flex';
+            if(badge) badge.style.display = 'none';
+            setTimeout(() => document.getElementById("rm-input").focus(), 100);
+        }
+    }
+
+    function handleRmEnter(e) {
+        if (e.key === 'Enter') processRmMessage();
+    }
+
+    async function processRmMessage() {
+        const input = document.getElementById("rm-input");
+        const text = input.value.trim();
+        if (!text) return;
+
+        // 1. Add User Message
+        addRmMsg(text, 'rm-msg-user');
+        input.value = '';
+
+        // 2. Show Typing Indicator
+        const body = document.getElementById("rm-chat-body");
+        const typing = document.createElement("div");
+        typing.className = "rm-typing";
+        typing.innerHTML = "AI is thinking...";
+        typing.style.display = "block";
+        body.scrollTop = body.scrollHeight;
+
+        try {
+            // 3. Call AWS Lambda (The Brain)
+            const response = await fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: text })
+            });
+
+            const data = await response.json();
+            
+            // Remove typing
+            body.removeChild(typing);
+
+            // 4. Display AI Response
+            addRmMsg(data.reply, 'rm-msg-bot');
+
+        } catch (error) {
+            console.error("Error:", error);
+            body.removeChild(typing);
+            
+            // Fallback if AWS is offline
+            const waUrl = `https://wa.me/${rmConfig.phone}?text=Hi%20Rajmohan,%20I%20asked:%20${encodeURIComponent(text)}`;
+            addRmMsg(`I'm having trouble connecting to the cloud. You can ask Rajmohan directly:<br><a href="${waUrl}" target="_blank" class="rm-wa-btn">Chat on WhatsApp</a>`, 'rm-msg-bot');
+        }
+    }
+
+    function addRmMsg(html, type) {
+        const body = document.getElementById("rm-chat-body");
+        const div = document.createElement("div");
+        div.className = `rm-msg ${type}`;
+        div.innerHTML = html;
+        body.appendChild(div);
+        body.scrollTop = body.scrollHeight;
+    }
+	
+	
         const rmConfig = {
             phone: "6591470353",
             name: "Rajmohan"
