@@ -365,311 +365,175 @@
 
     <script src="script.js"></script>
 
-    <div id="rm-widget-container">
-        <div id="rm-chat-window">
-            <div class="rm-header">
-                <div class="rm-profile">
-                    <div class="rm-avatar">
-                        <i class="fa-solid fa-robot"></i>
-                    </div>
-                    <div class="rm-info">
-                        <span class="rm-name">Rajmohan's AI</span>
-                        <span class="rm-role">Enterprise Architect Bot</span>
-                    </div>
+   <div id="rm-widget-container">
+    <div id="rm-chat-window" style="display: none;">
+        <div class="rm-header">
+            <div class="rm-profile">
+                <div class="rm-avatar">
+                    <i class="fa-solid fa-robot"></i>
                 </div>
-                <button onclick="toggleRmChat()" class="rm-close">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            
-            <div class="rm-body" id="rm-chat-body">
-                <div class="rm-date">Today</div>
-                <div class="rm-msg rm-msg-bot">
-                    Hello! 👋 <br>
-                    I can summarize Rajmohan's <b>Microservices Expertise</b>, <b>Certifications</b>, or help you <b>Contact</b> him.
+                <div class="rm-info">
+                    <span class="rm-name">Rajmohan's AI</span>
+                    <span class="rm-role">Enterprise Architect Bot</span>
                 </div>
             </div>
-
-            <div class="rm-footer">
-                <input type="text" id="rm-input" placeholder="Ask about Microservices..." onkeypress="handleRmEnter(event)">
-                <button onclick="processRmMessage()" id="rm-send-btn">
-                    <i class="fa-solid fa-paper-plane"></i>
-                </button>
+            <button onclick="toggleRmChat()" class="rm-close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        
+        <div class="rm-body" id="rm-chat-body">
+            <div class="rm-date">Today</div>
+            <div class="rm-msg rm-msg-bot">
+                Hello! 👋 <br>
+                I am connected to <b>AWS Bedrock</b>. Ask me about Rajmohan's Microservices experience or Certifications.
             </div>
         </div>
 
-        <button id="rm-launcher" onclick="toggleRmChat()">
-            <i class="fa-solid fa-comment-dots"></i>
-            <span class="rm-badge">1</span>
-        </button>
+        <div class="rm-footer">
+            <input type="text" id="rm-input" placeholder="Ask a question..." onkeypress="handleRmEnter(event)">
+            <button onclick="processRmMessage()" id="rm-send-btn">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </div>
     </div>
 
-    <style>
-        /* --- 1. CONTAINER & POSITIONING --- */
-        #rm-widget-container {
-            font-family: 'Inter', sans-serif;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 99999;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
+    <button id="rm-launcher" onclick="toggleRmChat()">
+        <i class="fa-solid fa-comment-dots"></i>
+        <span class="rm-badge">1</span>
+    </button>
+</div>
 
-        /* --- 2. LAUNCHER BUTTON (Pulse Animation) --- */
-        #rm-launcher {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #0f172a, #334155); /* Dark Slate */
-            color: white;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-        }
-        #rm-launcher:hover { transform: scale(1.1); }
-        
-        #rm-launcher::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            border-radius: 50%;
-            border: 2px solid #334155;
-            animation: rmPulse 2s infinite;
-        }
-        @keyframes rmPulse {
-            0% { transform: scale(1); opacity: 0.6; }
-            100% { transform: scale(1.5); opacity: 0; }
-        }
+<style>
+    /* WIDGET STYLES */
+    #rm-widget-container {
+        font-family: 'Inter', sans-serif;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 99999;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    #rm-launcher {
+        width: 60px; height: 60px;
+        border-radius: 50%;
+        background: #0f172a; color: white;
+        border: none; font-size: 24px; cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        transition: transform 0.3s;
+    }
+    #rm-launcher:hover { transform: scale(1.1); }
+    
+    #rm-chat-window {
+        width: 350px;
+        max-height: 80vh; height: 500px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        margin-bottom: 15px;
+        flex-direction: column;
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+    }
+    
+    .rm-header {
+        background: #0f172a; padding: 15px;
+        display: flex; justify-content: space-between; align-items: center; color: white;
+    }
+    .rm-profile { display: flex; align-items: center; gap: 10px; }
+    .rm-avatar { width: 35px; height: 35px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .rm-info { display: flex; flex-direction: column; }
+    .rm-name { font-weight: bold; font-size: 14px; }
+    .rm-role { font-size: 11px; opacity: 0.8; }
+    .rm-close { background: none; border: none; color: white; cursor: pointer; font-size: 18px; }
 
-        .rm-badge {
-            position: absolute;
-            top: -5px; right: -5px;
-            background: #ef4444;
-            color: white;
-            font-size: 11px;
-            width: 20px; height: 20px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            border: 2px solid white;
-            font-weight: bold;
-        }
+    .rm-body { flex: 1; padding: 15px; background: #f8fafc; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+    .rm-msg { max-width: 85%; padding: 10px 14px; font-size: 14px; line-height: 1.5; border-radius: 12px; word-wrap: break-word; }
+    .rm-msg-bot { background: white; color: #333; border-bottom-left-radius: 2px; border: 1px solid #e2e8f0; }
+    .rm-msg-user { background: #2563eb; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+    
+    .rm-footer { padding: 10px; background: white; border-top: 1px solid #f1f5f9; display: flex; gap: 10px; }
+    #rm-input { flex: 1; padding: 10px; border: 1px solid #e2e8f0; border-radius: 20px; outline: none; }
+    #rm-send-btn { background: #2563eb; color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; }
+    .rm-typing { font-size: 12px; color: #64748b; font-style: italic; margin-left: 10px; display: none; }
+    .rm-badge { position: absolute; top: -5px; right: -5px; background: red; color: white; font-size: 10px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+</style>
 
-        /* --- 3. CHAT WINDOW (Dynamic Height Fix) --- */
-        #rm-chat-window {
-            display: none; 
-            width: 350px;
-            max-height: 80vh; 
-            height: 500px; 
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            margin-bottom: 15px;
-            flex-direction: column;
-            overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.05);
-            transform-origin: bottom right;
-            animation: rmSlideUp 0.3s ease-out;
-        }
+<script>
+    // --- CONFIGURATION ---
+    // ⬇️ REPLACE WITH YOUR COPIED API URL ⬇️
+	const API_URL = "https://h46qo9irm0.execute-api.us-east-1.amazonaws.com/chat";
+    const PHONE = "6591470353";
 
-        @keyframes rmSlideUp {
-            from { opacity: 0; transform: translateY(20px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        /* --- 4. HEADER --- */
-        .rm-header {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            padding: 18px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
-        }
-        .rm-profile { display: flex; align-items: center; gap: 12px; }
-        .rm-avatar {
-            width: 40px; height: 40px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 18px;
-        }
-        .rm-info { display: flex; flex-direction: column; }
-        .rm-name { font-weight: 700; font-size: 15px; letter-spacing: 0.5px; }
-        .rm-role { font-size: 11px; opacity: 0.8; margin-top: 2px; }
-        .rm-close {
-            background: none; border: none;
-            color: rgba(255,255,255,0.7);
-            font-size: 20px; cursor: pointer;
-            padding: 5px;
-            transition: color 0.2s;
-        }
-        .rm-close:hover { color: white; }
-
-        /* --- 5. BODY & SCROLL --- */
-        .rm-body {
-            flex: 1;
-            padding: 20px;
-            background: #f8fafc;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .rm-body::-webkit-scrollbar { width: 6px; }
-        .rm-body::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
-
-        .rm-date { text-align: center; font-size: 10px; color: #94a3b8; margin-bottom: 5px; }
-
-        .rm-msg {
-            max-width: 85%;
-            padding: 12px 16px;
-            font-size: 14px;
-            line-height: 1.5;
-            position: relative;
-            word-wrap: break-word;
-        }
-        .rm-msg-bot {
-            background: white;
-            color: #334155;
-            border-radius: 15px 15px 15px 2px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        .rm-msg-user {
-            background: #2563eb; /* Bright Blue */
-            color: white;
-            align-self: flex-end;
-            border-radius: 15px 15px 2px 15px;
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
-        }
-
-        .rm-typing {
-            margin-left: 10px; font-size: 12px; color: #64748b;
-            font-style: italic; display: none;
-        }
-
-        /* --- 6. FOOTER (Input) --- */
-        .rm-footer {
-            padding: 15px;
-            background: white;
-            border-top: 1px solid #f1f5f9;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        #rm-input {
-            flex: 1;
-            padding: 12px 15px;
-            border: 1px solid #e2e8f0;
-            border-radius: 25px;
-            outline: none;
-            font-size: 14px;
-            background: #f8fafc;
-            transition: all 0.2s;
-        }
-        #rm-input:focus { background: white; border-color: #2563eb; }
-        
-        #rm-send-btn {
-            width: 40px; height: 40px;
-            border-radius: 50%;
-            background: #2563eb;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s;
-            display: flex; align-items: center; justify-content: center;
-        }
-        #rm-send-btn:hover { transform: scale(1.05); background: #1d4ed8; }
-
-        /* WhatsApp Button Style */
-        .rm-wa-btn {
-            display: inline-block; margin-top: 8px;
-            background: #25D366; color: white;
-            padding: 8px 14px; border-radius: 20px;
-            font-weight: 600; font-size: 12px; text-decoration: none;
-            box-shadow: 0 2px 5px rgba(37, 211, 102, 0.3);
-        }
-        .rm-wa-btn:hover { background: #1ebc57; }
-
-        @media (max-width: 480px) {
-            #rm-chat-window { width: 300px; right: 10px; bottom: 80px; }
-        }
-    </style>
-
-    <script>
-        // --- RAJMOHAN'S CONFIG ---
-		
-		// --- AWS CONFIGURATION ---
-    // PASTE YOUR FULL URL HERE (ending in /chat)
-    const API_URL = "https://h46qo9irm0.execute-api.us-east-1.amazonaws.com/chat"; 
-
-    // --- RAJMOHAN'S CONFIG ---
-    const rmConfig = {
-        phone: "6591470353",
-        name: "Rajmohan"
-    };
-
-    // --- FUNCTIONS ---
+    // --- TOGGLE CHAT ---
     function toggleRmChat() {
+        console.log("Toggling chat..."); // Debug check
         const win = document.getElementById("rm-chat-window");
         const badge = document.querySelector(".rm-badge");
-        if (win.style.display === 'flex') {
-            win.style.display = 'none';
-        } else {
+        
+        if (!win) {
+            console.error("Chat window element not found!");
+            return;
+        }
+
+        if (win.style.display === 'none' || win.style.display === '') {
             win.style.display = 'flex';
-            if(badge) badge.style.display = 'none';
+            if (badge) badge.style.display = 'none';
             setTimeout(() => document.getElementById("rm-input").focus(), 100);
+        } else {
+            win.style.display = 'none';
         }
     }
 
+    // --- HANDLE ENTER KEY ---
     function handleRmEnter(e) {
         if (e.key === 'Enter') processRmMessage();
     }
 
+    // --- SEND MESSAGE ---
     async function processRmMessage() {
         const input = document.getElementById("rm-input");
         const text = input.value.trim();
         if (!text) return;
 
-        // 1. Add User Message
+        // 1. Show User Message
         addRmMsg(text, 'rm-msg-user');
         input.value = '';
 
-        // 2. Show Typing Indicator
+        // 2. Show Typing
         const body = document.getElementById("rm-chat-body");
         const typing = document.createElement("div");
         typing.className = "rm-typing";
-        typing.innerHTML = "AI is thinking...";
+        typing.innerText = "AI is thinking...";
         typing.style.display = "block";
+        body.appendChild(typing);
         body.scrollTop = body.scrollHeight;
 
         try {
-            // 3. Call AWS Lambda (The Brain)
+            console.log("Sending to AWS...");
+            // 3. Call AWS
             const response = await fetch(API_URL, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message: text })
             });
 
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
             const data = await response.json();
             
-            // Remove typing
+            // 4. Remove Typing & Show Answer
             body.removeChild(typing);
-
-            // 4. Display AI Response
             addRmMsg(data.reply, 'rm-msg-bot');
 
         } catch (error) {
-            console.error("Error:", error);
+            console.error("AWS Error:", error);
             body.removeChild(typing);
-            
-            // Fallback if AWS is offline
-            const waUrl = `https://wa.me/${rmConfig.phone}?text=Hi%20Rajmohan,%20I%20asked:%20${encodeURIComponent(text)}`;
-            addRmMsg(`I'm having trouble connecting to the cloud. You can ask Rajmohan directly:<br><a href="${waUrl}" target="_blank" class="rm-wa-btn">Chat on WhatsApp</a>`, 'rm-msg-bot');
+            // Fallback link
+            const waUrl = `https://wa.me/${PHONE}?text=Hi%20Rajmohan,%20I%20asked:%20${encodeURIComponent(text)}`;
+            addRmMsg(`⚠️ Cloud connection failed. <br><a href="${waUrl}" target="_blank" style="color:#2563eb; font-weight:bold;">Ask on WhatsApp</a>`, 'rm-msg-bot');
         }
     }
 
@@ -681,127 +545,7 @@
         body.appendChild(div);
         body.scrollTop = body.scrollHeight;
     }
-	
-	
-        const rmConfig = {
-            phone: "6591470353",
-            name: "Rajmohan"
-        };
-
-        // --- BRAIN (KEYWORDS) - UPDATED WITH MICROSERVICES ---
-        const rmKnowledge = [
-            {
-                intent: "microservices",
-                keywords: ["microservice", "microservices", "monolith", "distributed", "soa", "architecture", "design", "api", "integration"],
-                answer: "Rajmohan has <b>deep expertise in Microservices Architecture</b>.<br><br>He transformed monolithic systems at DBS and TCS using <b>Spring Boot, Kafka, and Docker</b>. He specializes in breaking down complex legacy systems into scalable microservices."
-            },
-            {
-                intent: "certifications",
-                keywords: ["cert", "certified", "certificate", "badge", "aws", "togaf", "ibm"],
-                answer: "Rajmohan is triple certified:<br>🏆 <b>TOGAF</b> (Enterprise Architecture)<br>☁️ <b>AWS Certified</b> Solutions Architect Associate<br>🤖 <b>IBM Certified</b> Architect - Generative AI"
-            },
-            {
-                intent: "experience",
-                keywords: ["experience", "work", "history", "background", "job", "ibm", "dbs", "career", "resume", "cv"],
-                answer: "Rajmohan is a <b>Senior Solution Consultant at IBM</b> (since 2021).<br><br>Previously, he was a Lead Architect at <b>DBS Bank</b> and Solution Architect at <b>BNP Paribas</b>. He has 14+ years of expertise."
-            },
-            {
-                intent: "skills",
-                keywords: ["skill", "tech", "stack", "java", "cloud", "python", "coding", "know"],
-                answer: "His core technical stack includes:<br>🚀 <b>Cloud:</b> AWS, Kubernetes, Docker<br>☕ <b>Backend:</b> Java, Spring Boot, Python<br>🧠 <b>AI:</b> Gen-AI, LLMs, RAG Implementation."
-            },
-            {
-                intent: "gen_ai",
-                keywords: ["ai", "gen-ai", "gpt", "llm", "rag", "agent", "smart"],
-                answer: "Rajmohan specializes in <b>Gen-AI Innovation</b>. He architects platforms using LLMs and RAG (Retrieval-Augmented Generation) for enterprise clients at IBM."
-            },
-            {
-                intent: "contact",
-                keywords: ["contact", "email", "phone", "call", "whatsapp", "hire", "reach", "talk"],
-                answer: "You can contact Rajmohan directly:<br>📧 Rajmohanmsc@gmail.com<br>📱 +65 91470353",
-                action: "wa"
-            },
-            {
-                intent: "hello",
-                keywords: ["hi", "hello", "hey", "greeting", "morning", "evening", "start"],
-                answer: "Hello! I am Rajmohan's AI assistant. Ask me about his <b>Microservices experience</b>, <b>Certifications</b>, or <b>Cloud projects</b>!"
-            }
-        ];
-
-        // --- FUNCTIONS ---
-        function toggleRmChat() {
-            const win = document.getElementById("rm-chat-window");
-            const badge = document.querySelector(".rm-badge");
-            if (win.style.display === 'flex') {
-                win.style.display = 'none';
-            } else {
-                win.style.display = 'flex';
-                if(badge) badge.style.display = 'none';
-                setTimeout(() => document.getElementById("rm-input").focus(), 100);
-            }
-        }
-
-        function handleRmEnter(e) {
-            if (e.key === 'Enter') processRmMessage();
-        }
-
-        function processRmMessage() {
-            const input = document.getElementById("rm-input");
-            const text = input.value.trim();
-            if (!text) return;
-
-            addRmMsg(text, 'rm-msg-user');
-            input.value = '';
-
-            const body = document.getElementById("rm-chat-body");
-            const typing = document.createElement("div");
-            typing.className = "rm-typing";
-            typing.innerHTML = "AI is thinking...";
-            typing.style.display = "block";
-            body.appendChild(typing);
-            body.scrollTop = body.scrollHeight;
-
-            setTimeout(() => {
-                body.removeChild(typing);
-                const response = findRmResponse(text.toLowerCase());
-                addRmMsg(response.text, 'rm-msg-bot');
-            }, 600);
-        }
-
-        function findRmResponse(text) {
-            let bestMatch = null;
-            
-            for (const topic of rmKnowledge) {
-                for (const word of topic.keywords) {
-                    if (text.includes(word)) {
-                        bestMatch = topic;
-                        break;
-                    }
-                }
-                if (bestMatch) break;
-            }
-
-            if (bestMatch) {
-                if (bestMatch.action === 'wa') {
-                    const url = `https://wa.me/${rmConfig.phone}`;
-                    return { text: `${bestMatch.answer}<br><a href="${url}" target="_blank" class="rm-wa-btn">Chat on WhatsApp</a>` };
-                }
-                return { text: bestMatch.answer };
-            }
-
-            const waUrl = `https://wa.me/${rmConfig.phone}?text=Hi%20Rajmohan,%20I%20asked:%20${encodeURIComponent(text)}`;
-            return { text: `I don't have that specific detail on file. But Rajmohan can answer!<br><a href="${waUrl}" target="_blank" class="rm-wa-btn">Ask him on WhatsApp</a>` };
-        }
-
-        function addRmMsg(html, type) {
-            const body = document.getElementById("rm-chat-body");
-            const div = document.createElement("div");
-            div.className = `rm-msg ${type}`;
-            div.innerHTML = html;
-            body.appendChild(div);
-            body.scrollTop = body.scrollHeight;
-        }
-    </script>
+</script>
     </body>
 
 </html>
