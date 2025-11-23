@@ -709,6 +709,7 @@
             if (e.key === 'Enter') processRmMessage();
         }
 
+        // --- Replace this function in index.html ---
         async function processRmMessage() {
             const input = document.getElementById("rm-input");
             const text = input.value.trim();
@@ -729,21 +730,19 @@
                 const response = await fetch(API_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    // The key sent to Lambda is 'message' or 'prompt', 
-                    // depending on the last Python code version you deployed. 
-                    // We use 'prompt' for the client side.
-                    body: JSON.stringify({ prompt: text })
+                    // Ensure the key sent matches what Lambda expects (prompt/message)
+                    body: JSON.stringify({ message: text })
                 });
 
                 const data = await response.json();
                 body.removeChild(typing);
 
                 if (response.ok) {
-                    // 🚨 SUCCESS PATH FIX: Uses data.response key
+                    // 🚨 FIX: Now reads the correct key: 'response'
                     addRmMsg(data.response, 'rm-msg-bot');
                 } else {
-                    // 🚨 ERROR PATH FIX: Displays the detailed error from Lambda (500 status)
-                    const errorMessage = data.error || "Unknown server error. Check CloudWatch logs.";
+                    // Handle 500 error gracefully (like the Anthropic access issue)
+                    const errorMessage = data.error || data.response || "Unknown server error. Check CloudWatch.";
                     addRmMsg(`⚠️ AWS Error: ${errorMessage}`, 'rm-msg-bot');
                 }
 
@@ -754,6 +753,7 @@
                 addRmMsg(`⚠️ Cloud connection failed. <br><a href="${waUrl}" target="_blank" class="rm-wa-link">Chat on WhatsApp</a>`, 'rm-msg-bot');
             }
         }
+        // --- End of function ---
 
         function addRmMsg(html, type) {
             const body = document.getElementById("rm-chat-body");
