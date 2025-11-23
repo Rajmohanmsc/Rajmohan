@@ -905,13 +905,12 @@
             typing.style.display = "block";
             body.appendChild(typing);
             body.scrollTop = body.scrollHeight;
-
             try {
                 const response = await fetch(API_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        message: `You are Rajmohan's professional AI assistant. Respond to the following visitor message politely and concisely: ${text}`
+                        message: `You are Rajmohan's personal AI assistant. Speak directly to the visitor. Do NOT use phrases like "According to the profile" or "Based on the information". Instead, say "Rajmohan has..." or "He is...". Be professional, warm, and concise. Visitor message: ${text}`
                     })
                 });
 
