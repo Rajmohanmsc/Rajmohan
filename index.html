@@ -729,14 +729,23 @@
                 const response = await fetch(API_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ message: text })
+                    // The key sent to Lambda is 'message' or 'prompt', 
+                    // depending on the last Python code version you deployed. 
+                    // We use 'prompt' for the client side.
+                    body: JSON.stringify({ prompt: text })
                 });
-
-                if (!response.ok) throw new Error("Network response was not ok");
 
                 const data = await response.json();
                 body.removeChild(typing);
-                addRmMsg(data.reply, 'rm-msg-bot');
+
+                if (response.ok) {
+                    // 🚨 SUCCESS PATH FIX: Uses data.response key
+                    addRmMsg(data.response, 'rm-msg-bot');
+                } else {
+                    // 🚨 ERROR PATH FIX: Displays the detailed error from Lambda (500 status)
+                    const errorMessage = data.error || "Unknown server error. Check CloudWatch logs.";
+                    addRmMsg(`⚠️ AWS Error: ${errorMessage}`, 'rm-msg-bot');
+                }
 
             } catch (error) {
                 console.error("AWS Error:", error);
