@@ -710,7 +710,20 @@
         }
 
         async function processRmMessage() {
-            // ... (input handling) ...
+            const input = document.getElementById("rm-input");
+            const text = input.value.trim();
+            if (!text) return;
+
+            addRmMsg(text, 'rm-msg-user');
+            input.value = '';
+
+            const body = document.getElementById("rm-chat-body");
+            const typing = document.createElement("div");
+            typing.className = "rm-typing";
+            typing.innerText = "AI is thinking...";
+            typing.style.display = "block";
+            body.appendChild(typing);
+            body.scrollTop = body.scrollHeight;
 
             try {
                 const response = await fetch(API_URL, {
@@ -719,19 +732,19 @@
                     body: JSON.stringify({ message: text })
                 });
 
-                // 🚨 FINAL FIX: Rely on response.json() and read the final 'body' and 'reply' keys 🚨
+                // Step 1: Read the full API Gateway response (contains status, headers, and body as a string)
                 const apiGatewayResponse = await response.json();
                 body.removeChild(typing);
 
-                if (response.ok) {
-                    // FIX: The API Gateway response is a JSON object. We need to parse the 'body' string inside it.
+                if (response.ok && apiGatewayResponse.body) {
+                    // 🚨 FIX: Parse the 'body' field (which is a string) to get the final JSON payload
                     const finalPayload = JSON.parse(apiGatewayResponse.body);
 
-                    // Read the final 'reply' key
+                    // Step 3: Read the final 'reply' key and display the clean text
                     addRmMsg(finalPayload.reply, 'rm-msg-bot');
                 } else {
                     // Handle error cases 
-                    const errorPayload = JSON.parse(apiGatewayResponse.body);
+                    const errorPayload = apiGatewayResponse.body ? JSON.parse(apiGatewayResponse.body) : {};
                     const errorMessage = errorPayload.reply || errorPayload.error || "Unknown API Gateway Error.";
                     addRmMsg(`⚠️ AWS Error: ${errorMessage}`, 'rm-msg-bot');
                 }
