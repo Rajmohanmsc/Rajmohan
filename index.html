@@ -667,6 +667,187 @@
             justify-content: center;
         }
 
+        flex-direction: column;
+        align-items: flex-end;
+        font-family: 'Inter',
+        sans-serif;
+        }
+
+        #rm-launcher {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #0f172a;
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s;
+            position: relative;
+        }
+
+        #rm-launcher:hover {
+            transform: scale(1.1);
+        }
+
+        .rm-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background: #ef4444;
+            color: white;
+            font-size: 11px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+            font-weight: bold;
+        }
+
+        #rm-chat-window {
+            width: 350px;
+            max-height: 80vh;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .rm-header {
+            background: #0f172a;
+            padding: 15px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .rm-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rm-avatar {
+            width: 35px;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rm-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .rm-name {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .rm-role {
+            font-size: 11px;
+            opacity: 0.8;
+        }
+
+        .rm-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .rm-body {
+            flex: 1;
+            padding: 15px;
+            background: #f8fafc;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .rm-date {
+            text-align: center;
+            font-size: 11px;
+            color: #94a3b8;
+            margin-bottom: 5px;
+        }
+
+        .rm-msg {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        .rm-msg-bot {
+            background: white;
+            color: #334155;
+            border-bottom-left-radius: 2px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .rm-msg-user {
+            background: #2563eb;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        .rm-typing {
+            font-size: 12px;
+            color: #64748b;
+            font-style: italic;
+            margin-left: 10px;
+            display: none;
+        }
+
+        .rm-footer {
+            padding: 10px;
+            background: white;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            gap: 10px;
+        }
+
+        #rm-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        #rm-send-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         #rm-send-btn:hover {
             background: #1d4ed8;
         }
@@ -674,214 +855,18 @@
         .rm-wa-link {
             display: inline-block;
             margin-top: 5px;
-            <style>
+            color: #2563eb;
+            font-weight: bold;
+            text-decoration: none;
+        }
 
-            /* --- CHATBOT CSS --- */
-            #rm-widget-container {
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                z-index: 99999;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-end;
-                font-family: 'Inter', sans-serif;
-            }
-
-            #rm-launcher {
-                width: 60px;
-                height: 60px;
-                border-radius: 50%;
-                background: #0f172a;
-                color: white;
-                border: none;
-                font-size: 24px;
-                cursor: pointer;
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-                transition: transform 0.2s;
-                position: relative;
-            }
-
-            #rm-launcher:hover {
-                transform: scale(1.1);
-            }
-
-            .rm-badge {
-                position: absolute;
-                top: -2px;
-                right: -2px;
-                background: #ef4444;
-                color: white;
-                font-size: 11px;
-                width: 20px;
-                height: 20px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border: 2px solid white;
-                font-weight: bold;
-            }
-
+        @media (max-width: 480px) {
             #rm-chat-window {
-                width: 350px;
-                max-height: 80vh;
-                height: 500px;
-                background: white;
-                border-radius: 20px;
-                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-                margin-bottom: 15px;
-                display: flex;
-                flex-direction: column;
-                overflow: hidden;
-                border: 1px solid #e2e8f0;
+                width: 300px;
+                right: 10px;
+                bottom: 80px;
             }
-
-            .rm-header {
-                background: #0f172a;
-                padding: 15px;
-                color: white;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .rm-profile {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-
-            .rm-avatar {
-                width: 35px;
-                height: 35px;
-                background: rgba(255, 255, 255, 0.2);
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .rm-info {
-                display: flex;
-                flex-direction: column;
-            }
-
-            .rm-name {
-                font-weight: 700;
-                font-size: 14px;
-            }
-
-            .rm-role {
-                font-size: 11px;
-                opacity: 0.8;
-            }
-
-            .rm-close {
-                background: none;
-                border: none;
-                color: white;
-                font-size: 18px;
-                cursor: pointer;
-            }
-
-            .rm-body {
-                flex: 1;
-                padding: 15px;
-                background: #f8fafc;
-                overflow-y: auto;
-                display: flex;
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            .rm-date {
-                text-align: center;
-                font-size: 11px;
-                color: #94a3b8;
-                margin-bottom: 5px;
-            }
-
-            .rm-msg {
-                max-width: 85%;
-                padding: 10px 14px;
-                border-radius: 12px;
-                font-size: 14px;
-                line-height: 1.5;
-                word-wrap: break-word;
-            }
-
-            .rm-msg-bot {
-                background: white;
-                color: #334155;
-                border-bottom-left-radius: 2px;
-                border: 1px solid #e2e8f0;
-            }
-
-            .rm-msg-user {
-                background: #2563eb;
-                color: white;
-                align-self: flex-end;
-                border-bottom-right-radius: 2px;
-            }
-
-            .rm-typing {
-                font-size: 12px;
-                color: #64748b;
-                font-style: italic;
-                margin-left: 10px;
-                display: none;
-            }
-
-            .rm-footer {
-                padding: 10px;
-                background: white;
-                border-top: 1px solid #f1f5f9;
-                display: flex;
-                gap: 10px;
-            }
-
-            #rm-input {
-                flex: 1;
-                padding: 10px;
-                border: 1px solid #e2e8f0;
-                border-radius: 20px;
-                outline: none;
-                font-size: 14px;
-            }
-
-            #rm-send-btn {
-                background: #2563eb;
-                color: white;
-                border: none;
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            #rm-send-btn:hover {
-                background: #1d4ed8;
-            }
-
-            .rm-wa-link {
-                display: inline-block;
-                margin-top: 5px;
-                color: #2563eb;
-                font-weight: bold;
-                text-decoration: none;
-            }
-
-            @media (max-width: 480px) {
-                #rm-chat-window {
-                    width: 300px;
-                    right: 10px;
-                    bottom: 80px;
-                }
-            }
+        }
     </style>
 
     <script>
@@ -925,7 +910,9 @@
                 const response = await fetch(API_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ message: text })
+                    body: JSON.stringify({
+                        message: `You are Rajmohan's professional AI assistant. Respond to the following visitor message politely and concisely: ${text}`
+                    })
                 });
 
                 const data = await response.json();
